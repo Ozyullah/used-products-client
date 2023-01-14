@@ -1,12 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/tradeslogo.png'
 
 const Header = () => {
     return (
         <div>
             <div className="navbar bg-blue-300">
                 <div className="flex-1">
-                    <a className="btn btn-ghost normal-case text-xl"></a>
+                    <img className='w-10 ' src={logo} alt="" />
+                    <a className="btn btn-ghost normal-case text-xl">Used Laptop Sales</a>
                 </div>
+                    {/* Link section started */}
+                <div>
+                    <Link to={'/'} className=''>Catagory</Link>
+                </div>
+
+
                 <div className="flex-none gap-2">
                     <div className="form-control">
                         <input type="text" placeholder="Search" className="input input-bordered" />

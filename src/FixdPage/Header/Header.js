@@ -7,12 +7,13 @@ const Header = () => {
         <div>
             <div className="navbar bg-blue-300">
                 <div className="flex-1">
-                    <img className='w-10 ' src={logo} alt="" />
-                    <a className="btn btn-ghost normal-case text-xl">Used Laptop Sales</a>
+                    <img className='w-10' src={logo} alt="" />
+                    <Link to={'/'} className="btn btn-ghost normal-case text-xl">Used Laptop Sales</Link>
                 </div>
-                    {/* Link section started */}
-                <div>
-                    <Link to={'/'} className=''>Catagory</Link>
+
+                {/* Link section started */}
+                <div className='justify-start'>
+                    <Link to={'/catagory'} className=''>Catagory</Link>
                 </div>
 
 

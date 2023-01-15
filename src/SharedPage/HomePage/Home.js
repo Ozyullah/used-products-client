@@ -1,6 +1,7 @@
 import React from 'react';
 import Advertised from './Advertised';
 import img from '../../assets/Laptopimages.jpg'
+import Catagory from '../ProductsCatagory/Catagory/Catagory';
 
 const Home = () => {
     return (
@@ -10,7 +11,7 @@ const Home = () => {
                 <div className="hero-overlay bg-opacity-50"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">
-                        <h1 className="mb-5 text-5xl font-bold">Used Laptops</h1>
+                        <h1 className="mb-5 text-5xl font-bold">Its Used Laptops Deals</h1>
                         <p className="mb-5">A laptop is a personal computer that can be easily moved and used in a variety of locations. Most laptops are designed to have all of the functionality of a desktop computer, which means they can generally run the same software and open the same types of files.</p>
                         <button className="btn btn-primary">Get Started</button>
                     </div>
@@ -23,7 +24,7 @@ const Home = () => {
             </div>
 
             <div>
-                Used Products Catagory
+                <Catagory></Catagory>
             </div>
             {/* User Review section started */}
 

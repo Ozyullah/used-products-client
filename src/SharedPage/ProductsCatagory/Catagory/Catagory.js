@@ -29,7 +29,7 @@ const Catagory = () => {
 
 
             {
-                items?.map(item => <Link to={'/'}>
+                items?.map(item => <Link key={item.catagory_id} to={`/catagory/${item.catagory_id}`}>
                     <div className="card bg-base-100 shadow-xl image-full  hover:w-11/12 mb-5">
                         <figure><img src={item.img} alt="Shoes" /></figure>
                         <div className="card-body text-center">

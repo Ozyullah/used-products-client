@@ -3,3 +3,8 @@
         display: none;
     }
 }
+
+.navbar-position{
+    top: 0;
+    position: sticky;
+}

@@ -1,9 +1,51 @@
 import React from 'react';
 import Advertised from './Advertised';
-import img from '../../assets/Laptopimages.jpg'
 import Catagory from '../ProductsCatagory/Catagory/Catagory';
+import { useContext } from 'react';
+import { UsedContext } from '../../Context/AuthContext';
+import { toast } from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
+    const { user } = useContext(UsedContext)
+    const handleReview = event => {
+        event.preventDefault()
+        const form = event.target;
+        const review = form.review.value;
+        const photo = user.photoURL;
+
+        form.reset('')
+
+        console.log(review, photo)
+
+        const counsel ={
+            review,
+            photo
+        }
+
+        fetch('http://localhost:4000/review',{
+            method: 'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body: JSON.stringify(counsel)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.acknowledged){
+                toast.success('Succesfully added Review')
+            }
+        })
+    }
+
+    const {data:allreviews =[]}= useQuery({
+        queryKey: ['allreviews'],
+        queryFn: ()=> fetch('http://localhost:4000/allreviews')
+        .then(res => res.json())
+    })
+
+    console.log(allreviews)
     return (
         <div>
             {/* banner sector started */}
@@ -28,31 +70,21 @@ const Home = () => {
             </div>
             {/* User Review section started */}
 
-            <div>
-                <h1 className='text-center'>User Review</h1>
+            <div className=' bg-slate-400'>
+                <h1 className='text-center font-bold'>Our Customers Reviews</h1>
+                <p className='text-center font-semibold mb-5'>Our website will see important reviews of users. Express your important opinion here.</p>
                 <div id="carouselExampleControls" className="carousel slide relative" data-bs-ride="carousel">
-                    <div className="carousel-inner relative w-6/12 mx-auto overflow-hidden">
-                        <div className="carousel-item active relative float-left w-full">
-                            <img
-                                src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
-                                className="block w-full"
-                                alt="Wild Landscape"
-                            />
-                        </div>
-                        <div className="carousel-item relative float-left w-full">
-                            <img
-                                src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
-                                className="block w-full"
-                                alt="Camera"
-                            />
-                        </div>
-                        <div className="carousel-item relative float-left w-full">
-                            <img
-                                src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
-                                className="block w-full"
-                                alt="Exotic Fruits"
-                            />
-                        </div>
+                    <div className="carousel-inner relative w-6/12 mx-auto overflow-hidden mb-5">
+                            {
+                                allreviews.map(option =><div className="carousel-item active relative float-left w-full bg-slate-400 rounded-md" key={option._id}>
+                                    <div>
+                                    <img src={option.photo} 
+                                    className=" rounded-full w-11" alt="" />
+                                    <p>{option.review}</p>
+                                    </div>
+                                </div>)
+                            }
+                        
                     </div>
                     <button
                         className="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
@@ -72,6 +104,35 @@ const Home = () => {
                         <span className="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
                         <span className="visually-hidden">Next</span>
                     </button>
+
+                </div>
+                {/* The button to open modal */}
+                <div >
+                    <label htmlFor="review-modal" className=' grid align-middle btn btn-outline btn-secondary border-none font-bold'>Add Reviews</label>
+                </div>
+
+
+                {/* Put this part before </body> tag */}
+                <input type="checkbox" id="review-modal" className="modal-toggle" />
+                <div className="modal">
+                    <div className="modal-box">
+                    <label htmlFor="review-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                        <h3 className="font-bold text-lg">Congratulations random Internet user!</h3>
+                        <form onSubmit={handleReview} action="">
+                            <div className="form-control w-full max-w-xs">
+                                <label className="label">
+                                    <span className="label-text">Write your Review</span>
+                                </label>
+                                <input type="text" name='review' placeholder="Write your opinion" className="input input-bordered w-full max-w-xs" />
+
+                            </div>
+                            <div className="modal-action">
+                                <button>
+                                    <label htmlFor="review-modal" className="btn">ok</label>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

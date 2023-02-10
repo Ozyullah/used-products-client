@@ -1,10 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddProducts from "../DashBoardPage/AddProductsPages/AddProducts";
+import AllSellers from "../DashBoardPage/AllSellers/AllSellers";
+import AllUsers from "../DashBoardPage/AllUsers/AllUsers";
+import Dashboar from "../DashBoardPage/DashBoard/Dashboar";
+import MyProducts from "../DashBoardPage/MyProducts/MyProducts";
+import DashLayout from "../Layout/DashLayout/DashLayout";
 import Main from "../Layout/Main";
 import Login from "../SecurityPages/Login";
 import SignUp from "../SecurityPages/SignUp";
 import Home from "../SharedPage/HomePage/Home";
 import Catagory from "../SharedPage/ProductsCatagory/Catagory/Catagory";
 import CatagoryItems from "../SharedPage/ProductsCatagory/CatagoryItems/CatagoryItems";
+import PrivateRoute from "./SecureRoute/PrivateRoute";
 
 
 export const direction = createBrowserRouter([
@@ -34,6 +41,32 @@ export const direction = createBrowserRouter([
                 path:'/signup',
                 element:<SignUp></SignUp>
             }
+        ],
+    },
+    {
+        path:'/dashboard',
+        element:<PrivateRoute><DashLayout></DashLayout></PrivateRoute>,
+        children:[
+        {
+            path:'/dashboard',
+            element:<Dashboar></Dashboar>
+        },
+        {
+            path:'/dashboard/allusers',
+            element:<PrivateRoute><AllUsers></AllUsers></PrivateRoute>
+        },
+        {
+            path:'/dashboard/allsellers',
+            element:<PrivateRoute><AllSellers></AllSellers></PrivateRoute>
+        },
+        {
+            path:'/dashboard/addproduct',
+            element:<PrivateRoute><AddProducts></AddProducts></PrivateRoute>
+        },
+        {
+            path:'/dashboard/myproducts',
+            element:<PrivateRoute><MyProducts></MyProducts></PrivateRoute>
+        }  
         ]
     }
 ])

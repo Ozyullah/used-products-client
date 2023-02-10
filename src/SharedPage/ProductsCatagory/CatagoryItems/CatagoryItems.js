@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import BookModal from '../../BookingPage/BookModal';
 import CatagoryItemsShown from './CatagoryItemsShown';
 
 const CatagoryItems = () => {
 
-    const uses =useLoaderData()
+    const uses = useLoaderData()
+
+    const [bookingdata, setBookingdata]=useState(null)
+
     console.log(uses)
     return (
-        <div className=' w-9/12 mx-auto mt-5 mb-5 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5'>
-            {
-                uses.map(use =><CatagoryItemsShown 
-                key={use._id}
-                use={use}
-                ></CatagoryItemsShown>)
-            }
+        <div>
+            <div className=' w-9/12 mx-auto mt-5 mb-5 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5'>
+                {
+                    uses.map(use => <CatagoryItemsShown
+                        key={use._id}
+                        use={use}
+                        setBookingdata={setBookingdata}
+                    ></CatagoryItemsShown>)
+                }
+            </div>
+
+            <BookModal
+            bookingdata={bookingdata}
+            setBookingdata={setBookingdata}
+            ></BookModal>
         </div>
     );
 };

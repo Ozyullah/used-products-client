@@ -4,6 +4,7 @@ import AllSellers from "../DashBoardPage/AllSellers/AllSellers";
 import AllUsers from "../DashBoardPage/AllUsers/AllUsers";
 import Dashboar from "../DashBoardPage/DashBoard/Dashboar";
 import MyProducts from "../DashBoardPage/MyProducts/MyProducts";
+import MyOrders from "../DashBoardPage/MyOrdersPage/MyOrders";
 import DashLayout from "../Layout/DashLayout/DashLayout";
 import Main from "../Layout/Main";
 import Login from "../SecurityPages/Login";
@@ -66,7 +67,11 @@ export const direction = createBrowserRouter([
         {
             path:'/dashboard/myproducts',
             element:<PrivateRoute><MyProducts></MyProducts></PrivateRoute>
-        }  
+        } ,
+        {
+            path:'/dashboard/myorders',
+            element:<MyOrders></MyOrders>
+        }
         ]
     }
 ])

@@ -37,6 +37,7 @@ const AddProducts = () => {
                 const category = data.category;
                 const resalPrice = data.resalPrice;
                 const originalPrice = data.originalPrice;
+                const quantity = data.quantity;
                 const usesYear = data.usesYear;
                 const postDate = data.postDate;
                 const selerName = data.selerName;
@@ -55,6 +56,7 @@ const AddProducts = () => {
                     catagory_id: category,
                     resale_price: resalPrice,
                     original_price: originalPrice,
+                    quantity,
                     uses_year: usesYear,
                     post_date: postDate,
                     seller_name: selerName,
@@ -183,6 +185,15 @@ const AddProducts = () => {
                                     <span className="label-text">Originale Price</span>
                                 </label>
                                 <input {...register("originalPrice")} type="text" placeholder="Please Enter originale price" className="input input-bordered" />
+                            </div>
+
+
+                             {/* Products Quantity section start */}
+                             <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Quantity</span>
+                                </label>
+                                <input {...register("quantity")} type="number" placeholder="Please Enter your products quantity" className="input input-bordered" />
                             </div>
 
 

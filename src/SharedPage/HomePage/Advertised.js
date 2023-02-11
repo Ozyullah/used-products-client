@@ -16,13 +16,7 @@ const Advertised = () => {
     return (
         <div>
             <h1>Advertised items</h1>
-            {
-                goods.map(item =><div key={item._id}>
-                    <img src={item.img} alt="" />
-                    <h2>{item.name}</h2>
-                    <h4>৳ {item.resale_price}</h4>
-                </div>)
-            }
+           
         </div>
     );
 };

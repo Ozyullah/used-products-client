@@ -24,6 +24,7 @@ const BookModal = ({ bookingdata, setBookingdata }) => {
         const saving ={
             user_name:name,
             email,
+            img:bookingdata?.img,
             products_name:item,
             products_price:price,
             user_phone:phone,

@@ -8,6 +8,22 @@ import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
     const { user } = useContext(UsedContext)
+
+
+    // Advertised loader section 
+
+    const {data: goods=[]}=useQuery({
+        queryKey: ['advertising'],
+        queryFn: async()=>{
+            const res =await fetch('http://localhost:4000/advertising');
+            const data =await res.json();
+            console.log(data)
+            return data;
+            
+        }
+    })
+
+    // Review manage section
     const handleReview = event => {
         event.preventDefault()
         const form = event.target;
@@ -61,9 +77,16 @@ const Home = () => {
             </div>
             {/* banner sector ended */}
 
-            <div>
-                <Advertised></Advertised>
+            {
+                goods?.length === 0  ? '' : <div>
+                {
+                    goods?.map(item =><Advertised 
+                        key={item._id}
+                        item={item}
+                        ></Advertised>)
+                }
             </div>
+            }
 
             <div>
                 <Catagory></Catagory>

@@ -15,10 +15,10 @@ const Catagory = () => {
             {
                 items?.map(item => <Link key={item.catagory_id} to={`/catagory/${item.catagory_id}`}>
                     <div className="card bg-base-100 shadow-xl image-full hover:w-11/12 mb-5">
-                        <figure><img src={item.img} alt="Shoes" /></figure>
+                        <figure><img className='' src={item.img} alt="Shoes" /></figure>
                         <div className="card-body text-center">
                             <h2 className="card-title ">{item.name}</h2>
-                            <img className='' src={logo} alt="" />
+                            {/* <img className='' src={logo} alt="" /> */}
                         </div>
                     </div>
                 </Link>)

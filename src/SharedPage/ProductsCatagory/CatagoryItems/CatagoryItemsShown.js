@@ -26,7 +26,7 @@ const CatagoryItemsShown = ({ use, setBookingdata }) => {
                 </figure>
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">{name}</h2>
-                    <div className='flex gap-1'>
+                    <div className='flex gap-0.5'>
                     <p>Seler Name: {seller_name}</p>
                     {
                         facts.map(fact => <div key={fact._id}>

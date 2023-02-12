@@ -13,6 +13,7 @@ import Home from "../SharedPage/HomePage/Home";
 import Catagory from "../SharedPage/ProductsCatagory/Catagory/Catagory";
 import CatagoryItems from "../SharedPage/ProductsCatagory/CatagoryItems/CatagoryItems";
 import PrivateRoute from "./SecureRoute/PrivateRoute";
+import Error from "../ErrorPages/Error";
 
 
 export const direction = createBrowserRouter([
@@ -73,5 +74,9 @@ export const direction = createBrowserRouter([
             element:<MyOrders></MyOrders>
         }
         ]
+    },
+    {
+        path:'/*',
+        element:<Error></Error>
     }
 ])

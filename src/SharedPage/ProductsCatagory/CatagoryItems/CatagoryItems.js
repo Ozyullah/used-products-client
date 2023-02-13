@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import BookModal from '../../BookingPage/BookModal';
+import CatagoryDetails from './CatagoryDetails';
 import CatagoryItemsShown from './CatagoryItemsShown';
 
 const CatagoryItems = () => {
@@ -8,6 +9,8 @@ const CatagoryItems = () => {
     const uses = useLoaderData()
 
     const [bookingdata, setBookingdata]=useState(null)
+
+    const [detailsdata, setDetailsdata]=useState(null)
 
     console.log(uses)
     return (
@@ -18,6 +21,7 @@ const CatagoryItems = () => {
                         key={use._id}
                         use={use}
                         setBookingdata={setBookingdata}
+                        setDetailsdata={setDetailsdata}
                     ></CatagoryItemsShown>)
                 }
             </div>
@@ -26,6 +30,11 @@ const CatagoryItems = () => {
             bookingdata={bookingdata}
             setBookingdata={setBookingdata}
             ></BookModal>
+
+            {/* <CatagoryDetails
+            detailsdata={detailsdata}
+            setDetailsdata={setDetailsdata}
+            ></CatagoryDetails> */}
         </div>
     );
 };

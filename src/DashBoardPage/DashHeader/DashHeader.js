@@ -32,7 +32,7 @@ const DashHeader = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li><Link to={'/dashboard/myorders'}>My Orders</Link></li>
-                    <li><Link to={''}>Reported items</Link></li>
+                    <li><Link to={'/dashboard/reportedItems'}>Reported items</Link></li>
                     <li tabIndex={0}>
                         <Link to={'/dashboard/allusers'}>
                             All Users

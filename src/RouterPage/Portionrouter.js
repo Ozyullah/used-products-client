@@ -14,6 +14,8 @@ import Catagory from "../SharedPage/ProductsCatagory/Catagory/Catagory";
 import CatagoryItems from "../SharedPage/ProductsCatagory/CatagoryItems/CatagoryItems";
 import PrivateRoute from "./SecureRoute/PrivateRoute";
 import Error from "../ErrorPages/Error";
+import CatagoryDetails from "../SharedPage/ProductsCatagory/CatagoryItems/CatagoryDetails";
+import ReportedItem from "../DashBoardPage/ReportItemsPage/ReportedItem";
 
 
 export const direction = createBrowserRouter([
@@ -32,8 +34,13 @@ export const direction = createBrowserRouter([
             },
             {
                 path:'/catagory/:id',
-                element:<CatagoryItems></CatagoryItems>,
+                element:<PrivateRoute><CatagoryItems></CatagoryItems></PrivateRoute>,
                 loader:({params})=>fetch(`http://localhost:4000/catagory/${params.id}`)
+            },
+            {
+                path:'/catagoryDetails/:id',
+                element:<PrivateRoute><CatagoryDetails></CatagoryDetails></PrivateRoute>,
+                loader:({params})=>fetch(`http://localhost:4000/productsDetails/${params.id}`)
             },
             {
                 path:'/login',
@@ -60,6 +67,10 @@ export const direction = createBrowserRouter([
         {
             path:'/dashboard/allsellers',
             element:<PrivateRoute><AllSellers></AllSellers></PrivateRoute>
+        },
+        {
+            path:'/dashboard/reportedItems',
+            element:<PrivateRoute><ReportedItem></ReportedItem></PrivateRoute>
         },
         {
             path:'/dashboard/addproduct',

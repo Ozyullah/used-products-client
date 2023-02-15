@@ -29,6 +29,7 @@ const MyProducts = () => {
                             <th>Job</th>
                             <th>Sales Status</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
 

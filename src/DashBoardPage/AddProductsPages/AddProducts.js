@@ -112,7 +112,7 @@ const AddProducts = () => {
                                 <label className="label">
                                     <span className="label-text">Producte Price</span>
                                 </label>
-                                <input {...register("productPrice")} type="text" placeholder="Please Enter price" className="input input-bordered" />
+                                <input {...register("productPrice")} type="text" placeholder="Please Enter Resal price" className="input input-bordered"/>
                             </div>
 
                             {/* Year of Purchase section start */}

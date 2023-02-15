@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 
 const AllUsers = () => {
 
-    const {data: infoes = [], refetch}= useQuery({
+  const {data: infoes = [], refetch}= useQuery({
         queryKey: ['users'],
         queryFn: async() =>{
             const res =await fetch('http://localhost:4000/users');

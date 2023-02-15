@@ -22,7 +22,7 @@ const ReportedTable = ({item}) => {
                         </div>
                         <div>
                             <div className="font-bold">{name}</div>
-                            <div className="text-sm opacity-50">{post_date}</div>
+                            <div className="text-sm opacity-50">Posted {post_date}</div>
                         </div>
                     </div>
                 </td>

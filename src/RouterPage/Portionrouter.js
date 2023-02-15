@@ -16,6 +16,8 @@ import PrivateRoute from "./SecureRoute/PrivateRoute";
 import Error from "../ErrorPages/Error";
 import CatagoryDetails from "../SharedPage/ProductsCatagory/CatagoryItems/CatagoryDetails";
 import ReportedItem from "../DashBoardPage/ReportItemsPage/ReportedItem";
+import AdminSecurRoute from "./DashboardSecurRoute/AdminSecurRoute";
+import MyWishList from "../DashBoardPage/WishListPage/MyWishList";
 
 
 export const direction = createBrowserRouter([
@@ -83,7 +85,16 @@ export const direction = createBrowserRouter([
         {
             path:'/dashboard/myorders',
             element:<MyOrders></MyOrders>
+        },
+        {
+            path:'/dashboard/mywishlist',
+            element:<PrivateRoute><MyWishList></MyWishList></PrivateRoute>
         }
+        // {
+        //     path:'/dashboard/adminRoute',
+        //     element:<AdminSecurRoute></AdminSecurRoute>,
+        //     loader:()=>fetch('http://localhost:4000/users')
+        // }
         ]
     },
     {

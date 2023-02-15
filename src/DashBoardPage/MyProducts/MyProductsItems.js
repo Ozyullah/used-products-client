@@ -10,7 +10,7 @@ const MyProductsItems = ({ item, i }) => {
     console.log(item.name)
     const { name, catagory_id, img, _id, condition, description, email, location, original_price, phone, post_date, productPrice, purchaseYear, resale_price, seller_name, uses_year, quantity } = item;
 
-    const { data: bookings = [name] } = useQuery({
+    const { data: bookings = [name], refetch} = useQuery({
         queryKey: ['bookingQuantity'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:4000/bookingQuantity?products_name=${name}`)
@@ -53,8 +53,24 @@ const MyProductsItems = ({ item, i }) => {
                 if(idea.acknowledged){
                     toast.success('Advertise Product succesfully added')
                     setBtndis(idea.acknowledged)
+                    refetch()
                 }
             })
+    }
+
+
+    const handleProductsDelete=()=>{
+        fetch(`http://localhost:4000/productsDelete/${_id}`,{
+            method: 'DELETE',
+        })
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data)
+            if(data.deletedCount > 0){
+                toast.success('Your Product succesfully deleted')
+                refetch()
+            }
+        })
     }
 
     console.log(item?.quantity)
@@ -100,6 +116,10 @@ const MyProductsItems = ({ item, i }) => {
                     {
                         !btndis ? <button onClick={()=>handleAdvertised(_id)} className="btn btn-ghost btn-xs bg-blue-400 text-white">advertise</button> : ''
                     }
+                </th>
+
+                <th>
+                    <button onClick={()=>handleProductsDelete()} className='btn btn-xs btn-error'>Delete</button>
                 </th>
             </tr>
         </tbody>

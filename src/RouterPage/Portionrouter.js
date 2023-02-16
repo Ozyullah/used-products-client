@@ -19,6 +19,7 @@ import ReportedItem from "../DashBoardPage/ReportItemsPage/ReportedItem";
 import AdminSecurRoute from "./DashboardSecurRoute/AdminSecurRoute";
 import MyWishList from "../DashBoardPage/WishListPage/MyWishList";
 import Blogs from "../FixdPage/BlogPage/Blogs";
+import Payment from "../DashBoardPage/PaymentPage/Payment";
 
 
 export const direction = createBrowserRouter([
@@ -94,6 +95,11 @@ export const direction = createBrowserRouter([
         {
             path:'/dashboard/mywishlist',
             element:<PrivateRoute><MyWishList></MyWishList></PrivateRoute>
+        },
+        {
+            path:'/dashboard/booking/payment/:id',
+            element:<Payment></Payment>,
+            loader: ({params}) =>fetch(`http://localhost:4000/booking/payment/${params.id}`)
         }
         // {
         //     path:'/dashboard/adminRoute',

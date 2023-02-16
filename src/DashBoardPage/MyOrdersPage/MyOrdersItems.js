@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MyOrdersItems = ({order,i}) => {
     console.log(order)
-    const {products_name, products_price, img}=order;
+    const {products_name, products_price, img, _id, paid}=order;
     return (
         
             <tbody>
@@ -33,7 +34,12 @@ const MyOrdersItems = ({order,i}) => {
                     </td>
                     
                     <th>
-                        <button className="btn btn-ghost btn-xs">PayNow</button>
+                        { !paid &&
+                            <Link to={`/dashboard/booking/payment/${_id}`}><button className="btn btn-xs btn-info">PayNow</button></Link>
+                        }
+                        {paid === 'succesfull' &&
+                            <p className='text-green-400 font-semibold'>paid</p>
+                        }
                     </th>
                 </tr>
 

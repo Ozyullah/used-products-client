@@ -5,7 +5,7 @@ const Blogs = () => {
 
     console.log(window)
     return (
-        <div>
+        <div className=" w-10/12 m-auto mt-8">
             <div>
                 <h3 className='text-xl font-semibold text-cyan-500 text-center'>What are the different ways to manage a state in a React application?</h3>
                 <p>

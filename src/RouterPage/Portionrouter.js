@@ -18,6 +18,7 @@ import CatagoryDetails from "../SharedPage/ProductsCatagory/CatagoryItems/Catago
 import ReportedItem from "../DashBoardPage/ReportItemsPage/ReportedItem";
 import AdminSecurRoute from "./DashboardSecurRoute/AdminSecurRoute";
 import MyWishList from "../DashBoardPage/WishListPage/MyWishList";
+import Blogs from "../FixdPage/BlogPage/Blogs";
 
 
 export const direction = createBrowserRouter([
@@ -43,6 +44,10 @@ export const direction = createBrowserRouter([
                 path:'/catagoryDetails/:id',
                 element:<PrivateRoute><CatagoryDetails></CatagoryDetails></PrivateRoute>,
                 loader:({params})=>fetch(`http://localhost:4000/productsDetails/${params.id}`)
+            },
+            {
+                path:'/blogs',
+                element:<Blogs></Blogs>
             },
             {
                 path:'/login',

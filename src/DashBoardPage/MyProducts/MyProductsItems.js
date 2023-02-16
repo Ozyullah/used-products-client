@@ -59,8 +59,8 @@ const MyProductsItems = ({ item, i }) => {
     }
 
 
-    const handleProductsDelete=()=>{
-        fetch(`http://localhost:4000/productsDelete/${_id}`,{
+    const handleProductsDelete=(id)=>{
+        fetch(`http://localhost:4000/productsDelete/${id}`,{
             method: 'DELETE',
         })
         .then(res => res.json())

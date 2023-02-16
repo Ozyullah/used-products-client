@@ -1,10 +1,23 @@
 import React from 'react';
+import { toast } from 'react-hot-toast';
 
-const ReportedTable = ({item}) => {
+const ReportedTable = ({item, refetch}) => {
 
 
-    const {img, name, phone, seller_name, post_date}=item;
+    const {img, name, phone, seller_name, post_date, _id}=item;
     console.log(item)
+
+    const handleReportedProduct =(id)=>{
+        fetch(`http://localhost:4000/productsDelete/${id}`,{
+            method: 'DELETE'
+        })
+        .then(res =>res.json())
+        .then(data =>{
+            
+            toast.success('Reported item Succesfully removed')
+            refetch()
+        })
+    }
     return (
         <tbody>
             <tr>
@@ -31,7 +44,7 @@ const ReportedTable = ({item}) => {
                     <br />
                     <span className="badge badge-ghost badge-sm">{phone}</span>
                 </td>
-                <td><button className='btn btn-xs btn-error'>Delete</button></td>
+                <td><button onClick={()=>handleReportedProduct(_id)} className='btn btn-xs btn-error'>Delete</button></td>
                 
             </tr>
         </tbody>

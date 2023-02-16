@@ -4,7 +4,7 @@ import ReportedTable from './ReportedTable';
 
 const ReportedItem = () => {
 
-    const {data: items =[] }=useQuery(
+    const {data: items =[], refetch}=useQuery(
         {
             queryKey: ['reportedData'],
             queryFn: async()=>{
@@ -35,6 +35,7 @@ const ReportedItem = () => {
     {
         items.map(item =><ReportedTable
         item={item}
+        refetch={refetch}
         ></ReportedTable>)
     }
     

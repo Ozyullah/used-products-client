@@ -4,10 +4,23 @@ import { AiFillFastBackward } from 'react-icons/ai';
 import { UsedContext } from '../../../Context/AuthContext';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { useQuery } from '@tanstack/react-query';
+import { HiShieldCheck } from 'react-icons/hi';
 
 const CatagoryDetails = () => {
 
     const {user}=useContext(UsedContext)
+
+
+    const { data: facts = [] } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:4000/users');
+            const data = await res.json();
+            console.log(data)
+            return data;
+        }
+    })
 
     const data = useLoaderData()
     console.log(data)
@@ -45,7 +58,17 @@ const CatagoryDetails = () => {
                     <p className=' font-semibold text-sky-600'> Tk {
                         data.productPrice === data.resale_price ? data.productPrice : ''
                     }</p>
-                    <p>For sale by {data.seller_name}</p>
+                    <div className='flex gap-0.5 '>
+                            <p>For sale by  {data.seller_name}</p>
+                            {
+                                facts.map(fact => <div key={fact._id}>
+
+                                    {
+                                        fact?.email && fact.quality === 'varifyed' ? <span className='text-blue-600 justify-center'><HiShieldCheck /></span> : ''
+                                    }
+                                </div>)
+                            }
+                        </div>
                 </div>
                 <hr />
                 <p className='flex justify-between mb-2'>Phone number:<span>{data.phone}</span></p>

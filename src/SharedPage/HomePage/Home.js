@@ -6,9 +6,35 @@ import { UsedContext } from '../../Context/AuthContext';
 import { toast } from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 
+
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+
 const Home = () => {
     const { user } = useContext(UsedContext)
 
+
+// carousel sector start
+    const responsive = {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 5
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 3
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 2
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 1
+        }
+    };
+// carousel sector start
 
     // Advertised loader section 
 
@@ -77,32 +103,46 @@ const Home = () => {
             </div>
             {/* banner sector ended */}
 
-            {
-                goods?.length === 0  ? '' : <div>
-                {
-                    goods?.map(item =><Advertised 
+
+
+      {/* <!-- Inner --> */}
+
+
+      {
+                goods?.length === 0  ? '' : 
+                    <div className=''>
+                        <h3 className='font-bold text-center mt-8 text-3xl'>Our products</h3>
+                        <Carousel className='mt-10 w-10/12 m-auto' responsive={responsive}>
+                    {
+                    goods?.map((item, i)=><Advertised 
                         key={item._id}
                         item={item}
+                        i={i}
                         ></Advertised>)
                 }
-            </div>
+                    </Carousel>
+                    </div>
             }
+
+      
+      
+      
 
             <div>
                 <Catagory></Catagory>
             </div>
             {/* User Review section started */}
 
-            <div className=' bg-slate-400'>
-                <h1 className='text-center font-bold'>Our Customers Reviews</h1>
-                <p className='text-center font-semibold mb-5'>Our website will see important reviews of users. Express your important opinion here.</p>
+            <div className=' bg-slate-100'>
+                <h1 className='text-center font-semibold'>Our Customers Reviews</h1>
+                <p className='text-center mb-5 w-5/12 m-auto'>Our website will see important reviews of users. Express your important opinion here.</p>
                 <div id="carouselExampleControls" className="carousel slide relative" data-bs-ride="carousel">
                     <div className="carousel-inner relative w-6/12 mx-auto overflow-hidden mb-5">
                             {
-                                allreviews.map(option =><div className="carousel-item active relative float-left w-full bg-slate-400 rounded-md" key={option._id}>
-                                    <div>
+                                allreviews.map(option =><div className="carousel-item active relative float-left w-full bg-slate-100 rounded-md" key={option._id}>
+                                    <div className=''>
                                     <img src={option.photo} 
-                                    className=" rounded-full w-11" alt="" />
+                                    className=" rounded-full w-11 items-center grid" alt="" />
                                     <p>{option.review}</p>
                                     </div>
                                 </div>)

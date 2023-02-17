@@ -9,8 +9,10 @@ const Catagory = () => {
 
     return (
         <div className='w-5/12 mx-auto mt-10'>
-            <h1 className='text-center font-semibold'>This is Catagory Sections</h1>
-
+            <div className=''>
+            <h1 className='text-center text-lg font-semibold'>ALL Catagory</h1>
+            <p className='mt-3 mb-5'>This includes devices such as , laptops, tablets, gaming consoles, and home appliances.</p>
+            </div>
 
             {
                 items?.map(item => <Link key={item.catagory_id} to={`/catagory/${item.catagory_id}`}>

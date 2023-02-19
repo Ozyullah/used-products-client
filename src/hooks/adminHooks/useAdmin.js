@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 const useAdmin =email =>{
     const [isAdmin, setIsAdmin]=useState(false);
-    
+    const [adminLoading, setAdminLoading]=useState(true);
     useEffect(()=>{
         if(email) {
             fetch(`http://localhost:4000/users/admin/${email}`)
@@ -10,10 +10,11 @@ const useAdmin =email =>{
             .then(data => {
                 console.log(isAdmin)
                 setIsAdmin(data.isAdmin)
+                setAdminLoading(false)
             })
         }
     }, [email])
-    return [isAdmin]
+    return [isAdmin, adminLoading]
 }
 
 export default useAdmin;

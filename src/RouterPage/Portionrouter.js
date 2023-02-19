@@ -70,23 +70,23 @@ export const direction = createBrowserRouter([
         },
         {
             path:'/dashboard/allusers',
-            element:<PrivateRoute><AllUsers></AllUsers></PrivateRoute>
+            element:<AdminSecurRoute><AllUsers></AllUsers></AdminSecurRoute>
         },
         {
             path:'/dashboard/allsellers',
-            element:<PrivateRoute><AllSellers></AllSellers></PrivateRoute>
+            element:<AdminSecurRoute><AllSellers></AllSellers></AdminSecurRoute>
         },
         {
             path:'/dashboard/reportedItems',
-            element:<PrivateRoute><ReportedItem></ReportedItem></PrivateRoute>
+            element:<AdminSecurRoute><ReportedItem></ReportedItem></AdminSecurRoute>
         },
         {
             path:'/dashboard/addproduct',
-            element:<PrivateRoute><AddProducts></AddProducts></PrivateRoute>
+            element:<AddProducts></AddProducts>
         },
         {
             path:'/dashboard/myproducts',
-            element:<PrivateRoute><MyProducts></MyProducts></PrivateRoute>
+            element:<MyProducts></MyProducts>
         } ,
         {
             path:'/dashboard/myorders',

@@ -1,3 +1,3 @@
-// const useSeller = email =>{
+const useSeller = email =>{
 
-// }
+}

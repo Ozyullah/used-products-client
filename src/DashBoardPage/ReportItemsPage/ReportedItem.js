@@ -34,6 +34,7 @@ const ReportedItem = () => {
     </thead>
     {
         items.map(item =><ReportedTable
+        key={item._id}
         item={item}
         refetch={refetch}
         ></ReportedTable>)

@@ -17,7 +17,7 @@ const CheckoutPayment = ({takaes}) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:4000/create-payment-intent", {
+        fetch("https://used-products-server-gold.vercel.app/create-payment-intent", {
           method: "POST",
           headers: { 
             "Content-Type": "application/json" 
@@ -83,7 +83,7 @@ const CheckoutPayment = ({takaes}) => {
                 trangectioneID: paymentIntent.id,
                 price: products_price
             }
-            fetch('http://localhost:4000/payments',{
+            fetch('https://used-products-server-gold.vercel.app/payments',{
                 method: 'POST',
                 headers:{
                     'content-type':'application/json'

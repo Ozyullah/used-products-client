@@ -8,14 +8,14 @@ const AllUsers = () => {
   const {data: infoes = [], refetch}= useQuery({
         queryKey: ['users'],
         queryFn: async() =>{
-            const res =await fetch('http://localhost:4000/users');
+            const res =await fetch('https://used-products-server-gold.vercel.app/users');
             const data =await res.json();
             return data;
         }
     })
 
     const handleMakeAdmin = id =>{
-        fetch(`http://localhost:4000/users/admin/${id}`,{
+        fetch(`https://used-products-server-gold.vercel.app/users/admin/${id}`,{
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('jsonAccessToken')}`
@@ -32,7 +32,7 @@ const AllUsers = () => {
     }
 
     const handleRemoveUser =id =>{
-        fetch(`http://localhost:4000/users/delete/${id}`,{
+        fetch(`https://used-products-server-gold.vercel.app/users/delete/${id}`,{
             method: 'DELETE'
         })
         .then(res =>res.json())

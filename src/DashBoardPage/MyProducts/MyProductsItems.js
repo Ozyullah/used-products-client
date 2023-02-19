@@ -13,7 +13,7 @@ const MyProductsItems = ({ item, i }) => {
     const { data: bookings = [name], refetch} = useQuery({
         queryKey: ['bookingQuantity'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:4000/bookingQuantity?products_name=${name}`)
+            const res = await fetch(`https://used-products-server-gold.vercel.app/bookingQuantity?products_name=${name}`)
             const data = await res.json();
             console.log(data)
             return data;
@@ -41,7 +41,7 @@ const MyProductsItems = ({ item, i }) => {
             quantity
         }
         console.log(advertis)
-        fetch(`http://localhost:4000/advertise`, {
+        fetch(`https://used-products-server-gold.vercel.app/advertise`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -60,7 +60,7 @@ const MyProductsItems = ({ item, i }) => {
 
 
     const handleProductsDelete=(id)=>{
-        fetch(`http://localhost:4000/productsDelete/${id}`,{
+        fetch(`https://used-products-server-gold.vercel.app/productsDelete/${id}`,{
             method: 'DELETE',
         })
         .then(res => res.json())

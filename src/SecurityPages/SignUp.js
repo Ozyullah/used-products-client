@@ -6,17 +6,19 @@ import { FcGoogle } from 'react-icons/fc';
 import { AiFillGithub } from 'react-icons/ai';
 import { UsedContext } from '../Context/AuthContext';
 import './SignUp.css'
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import useToken from '../hooks/useToken';
 
 
 const SignUp = () => {
 
+    const gitProvider = new GithubAuthProvider()
+
     const provider = new GoogleAuthProvider();
 
     const navigate = useNavigate();
 
-    const { user, createUser, addedUpdateUser, loginWithGoogle } = useContext(UsedContext)
+    const { user, createUser, addedUpdateUser, loginWithGoogle , loginWithGithub} = useContext(UsedContext)
 
     const [userEmail, setUserEmail]=useState('')
     console.log(userEmail)
@@ -88,6 +90,18 @@ const SignUp = () => {
     }
 
 
+    const handleGithubLogin =()=>{
+        loginWithGithub(gitProvider)
+        .then((result)=>{
+            const user =result.user;
+            toast.success('Login with github succesfull')
+        })
+        .catch((err)=>{
+            toast.error('firebase error', err)
+        })
+        }
+
+
 
     const puteUser = (email, displayName, photoURL, role) => {
 
@@ -97,7 +111,7 @@ const SignUp = () => {
             img: photoURL,
             role
         }
-        fetch(`http://localhost:4000/users`, {
+        fetch(`https://used-products-server-gold.vercel.app/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -143,7 +157,7 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Photo URL</span>
                                 </label>
-                                <input {...register("image")} type="photo" placeholder="Please Enter Image" className="input input-bordered" />
+                                <input {...register("image")} type="text" placeholder="Please Enter Image" className="input input-bordered" />
                             </div>
 
                             {/* Email section start */}
@@ -187,7 +201,7 @@ const SignUp = () => {
 
                         <div className='text-center'>
                             <button onClick={handlegoogleLogin}><FcGoogle /></button>
-                            <button className='ml-3 text-sky-500'><AiFillGithub /></button>
+                            <button onClick={handleGithubLogin} className='ml-3 text-sky-500'><AiFillGithub /></button>
                         </div>
 
                         <p className='text-center mb-5'>Alredy you have an account <Link to={'/login'} className='text-blue-500'>Login</Link></p>

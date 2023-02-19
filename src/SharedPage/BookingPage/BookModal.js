@@ -32,7 +32,7 @@ const BookModal = ({ bookingdata, setBookingdata }) => {
         }
         console.log(saving)
 
-        fetch('http://localhost:4000/booking',{
+        fetch('https://used-products-server-gold.vercel.app/booking',{
             method: 'POST',
             headers:{
                 'content-type': 'application/json'

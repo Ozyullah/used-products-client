@@ -6,7 +6,7 @@ const Dashboar = () => {
     const {data: infoes = []}= useQuery({
         queryKey: ['users'],
         queryFn: async() =>{
-            const res =await fetch('http://localhost:4000/users');
+            const res =await fetch('https://used-products-server-gold.vercel.app/users');
             const data =await res.json();
             return data;
         }
@@ -17,7 +17,7 @@ const Dashboar = () => {
     const {data: products = []}= useQuery({
         queryKey: ['products'],
         queryFn: async() =>{
-            const res =await fetch('http://localhost:4000/allProducts');
+            const res =await fetch('https://used-products-server-gold.vercel.app/allProducts');
             const data =await res.json();
             return data;
         }
@@ -27,7 +27,7 @@ const Dashboar = () => {
     const { data: sellers = []}=useQuery({
         queryKey: ['sellers'],
         queryFn: async()=>{
-            const res =await fetch('http://localhost:4000/sellers?role=Seller');
+            const res =await fetch('https://used-products-server-gold.vercel.app/sellers?role=Seller');
             const data =await res.json()
             return data;
         }

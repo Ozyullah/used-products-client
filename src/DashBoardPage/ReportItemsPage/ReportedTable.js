@@ -8,7 +8,7 @@ const ReportedTable = ({item, refetch}) => {
     console.log(item)
 
     const handleReportedProduct =(id)=>{
-        fetch(`http://localhost:4000/productsDelete/${id}`,{
+        fetch(`https://used-products-server-gold.vercel.app/productsDelete/${id}`,{
             method: 'DELETE'
         })
         .then(res =>res.json())

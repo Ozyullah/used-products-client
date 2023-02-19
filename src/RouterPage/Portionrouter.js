@@ -31,7 +31,7 @@ export const direction = createBrowserRouter([
             {
                 path:'/',
                 element:<Home></Home>,
-                loader:()=>fetch('http://localhost:4000/catagory')
+                loader:()=>fetch('https://used-products-server-gold.vercel.app/catagory')
             },
             {
                 path:'/catagory',
@@ -40,12 +40,12 @@ export const direction = createBrowserRouter([
             {
                 path:'/catagory/:id',
                 element:<PrivateRoute><CatagoryItems></CatagoryItems></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:4000/catagory/${params.id}`)
+                loader:({params})=>fetch(`https://used-products-server-gold.vercel.app/catagory/${params.id}`)
             },
             {
                 path:'/catagoryDetails/:id',
                 element:<PrivateRoute><CatagoryDetails></CatagoryDetails></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:4000/productsDetails/${params.id}`)
+                loader:({params})=>fetch(`https://used-products-server-gold.vercel.app/productsDetails/${params.id}`)
             },
             {
                 path:'/blogs',
@@ -100,12 +100,12 @@ export const direction = createBrowserRouter([
         {
             path:'/dashboard/booking/payment/:id',
             element:<Payment></Payment>,
-            loader: ({params}) =>fetch(`http://localhost:4000/booking/payment/${params.id}`)
+            loader: ({params}) =>fetch(`https://used-products-server-gold.vercel.app/booking/payment/${params.id}`)
         }
         // {
         //     path:'/dashboard/adminRoute',
         //     element:<AdminSecurRoute></AdminSecurRoute>,
-        //     loader:()=>fetch('http://localhost:4000/users')
+        //     loader:()=>fetch('https://used-products-server-gold.vercel.app/users')
         // }
         ]
     },

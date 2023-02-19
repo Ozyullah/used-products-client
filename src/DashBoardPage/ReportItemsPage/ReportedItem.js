@@ -8,7 +8,7 @@ const ReportedItem = () => {
         {
             queryKey: ['reportedData'],
             queryFn: async()=>{
-                const res =await fetch(`http://localhost:4000/reportedData?role=reported`);
+                const res =await fetch(`https://used-products-server-gold.vercel.app/reportedData?role=reported`);
                 const data =await res.json();
                 console.log(data)
                 return data;

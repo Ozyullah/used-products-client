@@ -10,7 +10,7 @@ const MyOrders = () => {
     const { data: orders = []}= useQuery({
         queryKey: ['bookingQuantity'],
         queryFn: async () =>{
-            const res = await fetch(`http://localhost:4000/bookingQuantity?email=${user.email}`)
+            const res = await fetch(`https://used-products-server-gold.vercel.app/bookingQuantity?email=${user.email}`)
             const data = await res.json();
             console.log(data)
             return data;

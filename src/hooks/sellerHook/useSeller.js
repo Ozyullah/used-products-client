@@ -9,7 +9,7 @@ const useSeller = email => {
 
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:4000/seller/${email}`)
+            fetch(`https://used-products-server-gold.vercel.app/seller/${email}`)
                 .then(res => res.json())
                 .then(data => {
 

@@ -34,6 +34,12 @@ const AuthContext = ({ children }) => {
         return signInWithPopup(auth, provider)
     }
 
+
+    const loginWithGithub =(provider)=>{
+        setLoader(true)
+        return signInWithPopup(auth, provider)
+    }
+
     const logOut =()=>{
         return signOut(auth)
     }
@@ -56,6 +62,7 @@ const AuthContext = ({ children }) => {
         logOut,
         logInWithEmailandPassword,
         loginWithGoogle,
+        loginWithGithub,
         loader
 
     }

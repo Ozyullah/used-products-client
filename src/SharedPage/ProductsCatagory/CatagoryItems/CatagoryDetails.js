@@ -15,7 +15,7 @@ const CatagoryDetails = () => {
     const { data: facts = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:4000/users');
+            const res = await fetch('https://used-products-server-gold.vercel.app/users');
             const data = await res.json();
             console.log(data)
             return data;
@@ -33,7 +33,7 @@ const CatagoryDetails = () => {
 
 
     const handleReportStatus=(id)=>{
-        fetch(`http://localhost:4000/productsDetailsRole/${id}`,{
+        fetch(`https://used-products-server-gold.vercel.app/productsDetailsRole/${id}`,{
             method: 'PUT'
         })
         .then(res =>res.json())

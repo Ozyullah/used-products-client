@@ -7,7 +7,7 @@ const AllSellers = () => {
     const { data: users = [], refetch}=useQuery({
         queryKey: ['users'],
         queryFn: async()=>{
-            const res =await fetch('http://localhost:4000/sellers?role=Seller');
+            const res =await fetch('https://used-products-server-gold.vercel.app/sellers?role=Seller');
             const data =await res.json()
             return data;
         }
@@ -15,7 +15,7 @@ const AllSellers = () => {
 
 
     const handleVerify= id=>{
-         fetch(`http://localhost:4000/users/verify/${id}`,{
+         fetch(`https://used-products-server-gold.vercel.app/users/verify/${id}`,{
             method: 'PUT'
          })
          .then(res => res.json())
@@ -29,7 +29,7 @@ const AllSellers = () => {
     }
 
     const handleDelete= id =>{
-        fetch(`http://localhost:4000/users/delete/${id}`,{
+        fetch(`https://used-products-server-gold.vercel.app/users/delete/${id}`,{
             method: 'DELETE'
         })
         .then(res => res.json())

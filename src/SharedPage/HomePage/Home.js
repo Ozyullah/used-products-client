@@ -41,7 +41,7 @@ const Home = () => {
     const {data: goods=[]}=useQuery({
         queryKey: ['advertising'],
         queryFn: async()=>{
-            const res =await fetch('http://localhost:4000/advertising');
+            const res =await fetch('https://used-products-server-gold.vercel.app/advertising');
             const data =await res.json();
             console.log(data)
             return data;
@@ -65,7 +65,7 @@ const Home = () => {
             photo
         }
 
-        fetch('http://localhost:4000/review',{
+        fetch('https://used-products-server-gold.vercel.app/review',{
             method: 'POST',
             headers:{
                 'content-type':'application/json'
@@ -83,7 +83,7 @@ const Home = () => {
 
     const {data:allreviews =[]}= useQuery({
         queryKey: ['allreviews'],
-        queryFn: ()=> fetch('http://localhost:4000/allreviews')
+        queryFn: ()=> fetch('https://used-products-server-gold.vercel.app/allreviews')
         .then(res => res.json())
     })
 

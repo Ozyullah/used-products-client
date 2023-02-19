@@ -7,7 +7,7 @@ const MyProductsItems = ({ item, i }) => {
     const [btndis, setBtndis]=useState(null)
 
     console.log(btndis)
-    console.log(item.name)
+    console.log(item)
     const { name, catagory_id, img, _id, condition, description, email, location, original_price, phone, post_date, productPrice, purchaseYear, resale_price, seller_name, uses_year, quantity } = item;
 
     const { data: bookings = [name], refetch} = useQuery({
@@ -101,7 +101,7 @@ const MyProductsItems = ({ item, i }) => {
                     </div>
                 </td>
                 <td>
-                    Zemlak, Daniel and Leannon
+                    {email}
                     <br />
                     <span className="badge badge-ghost badge-sm">Product salle Price: ৳{
                         item?.productPrice === item.resale_price ? <p>{item.productPrice}</p> : <p>Product Price is not match</p>

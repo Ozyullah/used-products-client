@@ -1,59 +1,69 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { UsedContext } from '../Context/AuthContext';
+import useToken from '../hooks/useToken';
 
 
 const Login = () => {
 
-    const provider =new GoogleAuthProvider();
+    const provider = new GoogleAuthProvider();
 
-    const navigate =useNavigate();
-    const location =useLocation();
+    const [userEmailToken, setUserEmailToken] = useState('')
 
-    const {user,logInWithEmailandPassword, loginWithGoogle}=useContext(UsedContext);
+    const [token] = useToken(userEmailToken)
+
+    console.log(token)
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const { user, logInWithEmailandPassword, loginWithGoogle } = useContext(UsedContext);
 
     const from = location.state?.from?.pathname || "/";
 
-    const {register, handleSubmit, formState:{errors}}=useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const loginHandle=(data)=>{
+    const loginHandle = (data) => {
         logInWithEmailandPassword(data.email, data.password)
-        .then((result)=>{
-            const user =result.user;
-            {
-                user  && toast.success('Succesfully Login')
-            }
-            navigate(from, { replace:true})
-        })
-        .catch((error)=>{
-            {
-                error && toast.error("User Not found, Please try again")
-            }
-        })
-        
+            .then((result) => {
+                const user = result.user;
+                {
+                    user && toast.success('Succesfully Login')
+                }
+                setUserEmailToken(data.email)
+                navigate(from, { replace: true })
+            })
+            .catch((error) => {
+                {
+                    error && toast.error("User Not found, Please try again")
+                }
+            })
+
     }
 
 
-    const handlegoogleLogin=()=>{
+    const handlegoogleLogin = () => {
         loginWithGoogle(provider)
-        .then((result)=>{
-            const user =result.user;
-            {
-                user && toast.success("Succesfully Login with Google")
-            }
-            navigate(from, { replace:true})
-        })
-        .catch((error)=>{
-            {
-                error && toast.error("firebaseError",error.message)
-            }
-        })
-   }
+            .then((result) => {
+                const user = result.user;
+                const email = result.user.email;
+                {
+                    user && toast.success("Succesfully Login with Google")
+                }
+                setUserEmailToken(email)
+                navigate(from, { replace: true })
+            })
+            .catch((error) => {
+                {
+                    error && toast.error("firebaseError", error.message)
+                }
+            })
+    }
 
     console.log(user)
 
@@ -70,8 +80,8 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" {...register("email",{
-                                    required:"Required",
+                                <input type="email" {...register("email", {
+                                    required: "Required",
                                     massage: "Email is not properly used"
                                 })} placeholder="email" className="input input-bordered" />
                                 {errors.email && errors.email.message}
@@ -80,10 +90,10 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" {...register("password",{
-                                    required:"Required",
+                                <input type="password" {...register("password", {
+                                    required: "Required",
                                     massage: "Password mustbe minimum length six charecter",
-                                    minLength:{value:6}
+                                    minLength: { value: 6 }
                                 })} placeholder="password" className="input input-bordered" />
                                 {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                                 <label className="label">
@@ -96,8 +106,8 @@ const Login = () => {
                         </form>
 
                         <div className='text-center'>
-                            <button onClick={handlegoogleLogin}><FcGoogle/></button>
-                            <button className='ml-3 text-sky-500'><AiFillGithub/></button>
+                            <button onClick={handlegoogleLogin}><FcGoogle /></button>
+                            <button className='ml-3 text-sky-500'><AiFillGithub /></button>
                         </div>
 
                         <p className='text-center mb-5'>If you do not have an account  <Link to={'/signup'} className='text-blue-500'>Signup</Link></p>

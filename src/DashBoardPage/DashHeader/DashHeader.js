@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UsedContext } from '../../Context/AuthContext';
+import useAdmin from '../../hooks/adminHooks/useAdmin';
 
 const DashHeader = () => {
+    const { user } = useContext(UsedContext);
+
+    const [isAdmin] = useAdmin(user.email)
+    console.log(isAdmin)
     return (
         <div className="navbar bg-blue-300">
             <div className="navbar-start">
@@ -12,16 +18,18 @@ const DashHeader = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {/* <li><Link to={'/dashboard/mywishlist'}>My WishList</Link></li> */}
                         <li><Link to={'/dashboard/myorders'}>My Orders</Link></li>
-                        <li><Link to={'/dashboard/reportedItems'}>Reported items</Link></li>
-                        <li tabIndex={0}>
-                            <Link to={'/dashboard/allusers'} className="justify-between">
-                                All Users
-                                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-                            </Link>
-                            <ul className="p-2">
+                        {
+                            isAdmin && <>
+                                <li><Link to={'/dashboard/reportedItems'}>Reported items</Link></li>
+                                <li>
+                                    <Link to={'/dashboard/allusers'} className="justify-between">
+                                        All Users
+                                    </Link>
+
+                                </li>
                                 <li><Link to={'/dashboard/allsellers'}>All Sellers</Link></li>
-                            </ul>
-                        </li>
+                            </>
+                        }
                         <li><Link to={'/dashboard/addproduct'}>Add Product</Link></li>
                         <li><Link to={'/dashboard/myproducts'}>My Products</Link></li>
                         <li><Link to={''}>My Buyers</Link></li>
@@ -33,14 +41,17 @@ const DashHeader = () => {
                 <ul className="menu menu-horizontal px-1">
                     {/* <li><Link to={'/dashboard/mywishlist'}>My WishList</Link></li> */}
                     <li><Link to={'/dashboard/myorders'}>My Orders</Link></li>
-                    <li><Link to={'/dashboard/reportedItems'}>Reported items</Link></li>
-                    <li tabIndex={0}>
-                        <Link to={'/dashboard/allusers'}>
-                            All Users
-                        </Link>
-                        <li><Link to={'/dashboard/allsellers'}>All Sellers</Link></li>
-
-                    </li>
+                    {
+                        isAdmin && <>
+                            <li><Link to={'/dashboard/reportedItems'}>Reported items</Link></li>
+                            <li>
+                                <Link to={'/dashboard/allusers'}>
+                                    All Users
+                                </Link>
+                            </li>
+                            <li><Link to={'/dashboard/allsellers'}>All Sellers</Link></li>
+                        </>
+                    }
                     <li><Link to={'/dashboard/addproduct'}>Add Product</Link></li>
                     <li><Link to={'/dashboard/myproducts'}>My Products</Link></li>
                     <li><Link to={''}>My Buyers</Link></li>

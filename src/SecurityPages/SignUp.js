@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,17 +7,30 @@ import { AiFillGithub } from 'react-icons/ai';
 import { UsedContext } from '../Context/AuthContext';
 import './SignUp.css'
 import { GoogleAuthProvider } from 'firebase/auth';
+import useToken from '../hooks/useToken';
 
 
 const SignUp = () => {
 
     const provider = new GoogleAuthProvider();
 
+    const navigate = useNavigate();
+
     const { user, createUser, addedUpdateUser, loginWithGoogle } = useContext(UsedContext)
+
+    const [userEmail, setUserEmail]=useState('')
+    console.log(userEmail)
+    const [token]=useToken(userEmail);
+    console.log(token)
+    
+
+    // if(token){
+    //     console.log(token)
+    //     // navigate('/')
+    // }
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const navigate = useNavigate();
 
 
     const handleCreateUser = data => {
@@ -91,9 +104,15 @@ const SignUp = () => {
             },
             body: JSON.stringify(addingUser)
         })
+        .then(res =>res.json())
+        .then(data => {
+            setUserEmail(email)
+            navigate('/')
+        })
 
-        navigate('/')
+        
     }
+
 
     return (
         <div className="backImage" style={{ backgroundImage: `url("https://images.mansionglobal.com/im-628924?width=1299&height=866")` }}>

@@ -90,7 +90,7 @@ const SignUp = () => {
     }
 
 
-    const handleGithubLogin =()=>{
+    const handleGithubSignIn =()=>{
         loginWithGithub(gitProvider)
         .then((result)=>{
             const user =result.user;
@@ -201,7 +201,7 @@ const SignUp = () => {
 
                         <div className='text-center'>
                             <button onClick={handlegoogleLogin}><FcGoogle /></button>
-                            <button onClick={handleGithubLogin} className='ml-3 text-sky-500'><AiFillGithub /></button>
+                            <button onClick={handleGithubSignIn} className='ml-3 text-sky-500'><AiFillGithub /></button>
                         </div>
 
                         <p className='text-center mb-5'>Alredy you have an account <Link to={'/login'} className='text-blue-500'>Login</Link></p>

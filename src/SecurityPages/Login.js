@@ -1,4 +1,4 @@
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -13,6 +13,8 @@ const Login = () => {
 
     const provider = new GoogleAuthProvider();
 
+    const gitProvider = new GithubAuthProvider();
+
     const [userEmailToken, setUserEmailToken] = useState('')
 
     const [token] = useToken(userEmailToken)
@@ -22,7 +24,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { user, logInWithEmailandPassword, loginWithGoogle } = useContext(UsedContext);
+    const { user, logInWithEmailandPassword, loginWithGoogle , loginWithGithub } = useContext(UsedContext);
 
     const from = location.state?.from?.pathname || "/";
 
@@ -64,6 +66,17 @@ const Login = () => {
                 }
             })
     }
+
+    const handleGithubLogIn =()=>{
+        loginWithGithub(gitProvider)
+        .then((result)=>{
+            const user =result.user;
+            toast.success('Login with github succesfull')
+        })
+        .catch((err)=>{
+            toast.error('firebase error', err)
+        })
+        }
 
     console.log(user)
 
@@ -107,7 +120,7 @@ const Login = () => {
 
                         <div className='text-center'>
                             <button onClick={handlegoogleLogin}><FcGoogle /></button>
-                            <button className='ml-3 text-sky-500'><AiFillGithub /></button>
+                            <button onClick={handleGithubLogIn} className='ml-3 text-sky-500'><AiFillGithub /></button>
                         </div>
 
                         <p className='text-center mb-5'>If you do not have an account  <Link to={'/signup'} className='text-blue-500'>Signup</Link></p>

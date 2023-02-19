@@ -20,6 +20,7 @@ import AdminSecurRoute from "./DashboardSecurRoute/AdminSecurRoute";
 import MyWishList from "../DashBoardPage/WishListPage/MyWishList";
 import Blogs from "../FixdPage/BlogPage/Blogs";
 import Payment from "../DashBoardPage/PaymentPage/Payment";
+import SellerSecureRoute from "./DashboardSecurRoute/SellerSecureRoute";
 
 
 export const direction = createBrowserRouter([
@@ -82,11 +83,11 @@ export const direction = createBrowserRouter([
         },
         {
             path:'/dashboard/addproduct',
-            element:<AddProducts></AddProducts>
+            element:<SellerSecureRoute><AddProducts></AddProducts></SellerSecureRoute>
         },
         {
             path:'/dashboard/myproducts',
-            element:<MyProducts></MyProducts>
+            element:<SellerSecureRoute><MyProducts></MyProducts></SellerSecureRoute>
         } ,
         {
             path:'/dashboard/myorders',
@@ -94,7 +95,7 @@ export const direction = createBrowserRouter([
         },
         {
             path:'/dashboard/mywishlist',
-            element:<PrivateRoute><MyWishList></MyWishList></PrivateRoute>
+            element:<MyWishList></MyWishList>
         },
         {
             path:'/dashboard/booking/payment/:id',

@@ -2,11 +2,14 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UsedContext } from '../../Context/AuthContext';
 import useAdmin from '../../hooks/adminHooks/useAdmin';
+import useSeller from '../../hooks/sellerHook/useSeller';
 
 const DashHeader = () => {
     const { user } = useContext(UsedContext);
 
-    const [isAdmin] = useAdmin(user.email)
+    const [isAdmin] = useAdmin(user?.email)
+
+    const [isSeller] = useSeller(user?.email)
     console.log(isAdmin)
     return (
         <div className="navbar bg-blue-300">
@@ -30,9 +33,13 @@ const DashHeader = () => {
                                 <li><Link to={'/dashboard/allsellers'}>All Sellers</Link></li>
                             </>
                         }
-                        <li><Link to={'/dashboard/addproduct'}>Add Product</Link></li>
-                        <li><Link to={'/dashboard/myproducts'}>My Products</Link></li>
-                        <li><Link to={''}>My Buyers</Link></li>
+                        {
+                            isSeller && <>
+                                <li><Link to={'/dashboard/addproduct'}>Add Product</Link></li>
+                                <li><Link to={'/dashboard/myproducts'}>My Products</Link></li>
+                                {/* <li><Link to={''}>My Buyers</Link></li> */}
+                            </>
+                        }
                     </ul>
                 </div>
                 <Link to={'/'} className="btn btn-ghost normal-case text-xl">daisyUI</Link>
@@ -52,9 +59,14 @@ const DashHeader = () => {
                             <li><Link to={'/dashboard/allsellers'}>All Sellers</Link></li>
                         </>
                     }
-                    <li><Link to={'/dashboard/addproduct'}>Add Product</Link></li>
-                    <li><Link to={'/dashboard/myproducts'}>My Products</Link></li>
-                    <li><Link to={''}>My Buyers</Link></li>
+                    {
+                        isSeller && <>
+
+                            <li><Link to={'/dashboard/addproduct'}>Add Product</Link></li>
+                            <li><Link to={'/dashboard/myproducts'}>My Products</Link></li>
+                            {/* <li><Link to={''}>My Buyers</Link></li> */}
+                            </>
+                    }
                 </ul>
             </div>
             {/* <div className="navbar-end">

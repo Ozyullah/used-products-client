@@ -119,7 +119,7 @@ const Home = () => {
                         item={item}
                         i={i}
                         ></Advertised>)
-                }
+                    }
                     </Carousel>
                     </div>
             }
